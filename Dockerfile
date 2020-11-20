@@ -30,7 +30,7 @@ ENV BITNAMI_APP_NAME="mariadb" \
     PATH="/opt/bitnami/common/bin:/opt/bitnami/mariadb/bin:/opt/bitnami/mariadb/sbin:$PATH"
 
 EXPOSE 3306
-
+RUN chmod +x /opt/bitnami/scripts/mariadb/entrypoint.sh
 USER 1001
 ENTRYPOINT [ "/opt/bitnami/scripts/mariadb/entrypoint.sh" ]
 CMD [ "/opt/bitnami/scripts/mariadb/run.sh" ]
