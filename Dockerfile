@@ -8,9 +8,9 @@ ENV HOME="/" \
 
 COPY prebuildfs /
 
-USER 0 # Required to perform privileged actions
+USER 0
 
-RUN chmod +x /usr/sbin/install_packages # Required to allow install_packages execution
+RUN chmod +x /usr/sbin/install_packages
 
 # Install required system packages and dependencies
 RUN install_packages acl ca-certificates curl gzip libaio1 libaudit1 libc6 libcap-ng0 libgcc1 libicu63 liblzma5 libncurses6 libpam0g libssl1.1 libstdc++6 libtinfo6 libxml2 procps tar zlib1g
@@ -23,7 +23,7 @@ RUN chmod g+rwX /opt/bitnami
 RUN mkdir /docker-entrypoint-initdb.d
 
 COPY rootfs /
-RUN chmod +x /opt/bitnami/scripts/mariadb/postunpack.sh # Required to allow postunpack.sh execution
+RUN chmod +x /opt/bitnami/scripts/mariadb/postunpack.sh
 RUN /opt/bitnami/scripts/mariadb/postunpack.sh
 ENV BITNAMI_APP_NAME="mariadb" \
     BITNAMI_IMAGE_VERSION="10.5.8-debian-10-r7" \
@@ -31,6 +31,6 @@ ENV BITNAMI_APP_NAME="mariadb" \
 
 EXPOSE 3306
 
-USER 1001 # Revert to the original non-root user
+USER 1001
 ENTRYPOINT [ "/opt/bitnami/scripts/mariadb/entrypoint.sh" ]
 CMD [ "/opt/bitnami/scripts/mariadb/run.sh" ]
